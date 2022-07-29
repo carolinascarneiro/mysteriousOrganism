@@ -44,14 +44,14 @@ const pAequorFactory = (specimenNum, dna) => {
             return dna
         },
         compareDNA(pAequor) {
-          let equalBases = [];
-          for (let i = 0; i < this._dna.length; i++) {
+            let equalBases = [];
+            for (let i = 0; i < this._dna.length; i++) {
                 if (this._dna[i] === pAequor.dna[i]) {
                     equalBases.push(this._dna[i]);
                     console.log(equalBases)
                 }
-          }
-          console.log(`specimen #${this._specimenNum} and #${pAequor._specimenNum} have ${equalBases.length/this._dna.length} in common`)
+            }
+            console.log(`specimen #${this._specimenNum} and #${pAequor._specimenNum} have ${equalBases.length / this._dna.length} in common`)
         },
         willLikelySurvive() {
             counter = 0;
@@ -65,8 +65,15 @@ const pAequorFactory = (specimenNum, dna) => {
     }
 }
 
-let ex1 = pAequorFactory(1, ['A', 'C', 'G', 'G'])
-let ex2 = pAequorFactory(2, ['C', 'A', 'T', 'T'])
-console.log(ex1.willLikelySurvive())
-// organism1.mutate()
-// console.log(organism1)
+let newSpecimen = []
+let survivors = []
+let i = 0;
+while (survivors.length < 30) {
+    newSpecimen[i] = pAequorFactory(i, mockUpStrand());
+    if (newSpecimen[i].willLikelySurvive()) {
+        survivors.push(newSpecimen[i])
+    }
+    i++;
+}
+
+console.log(survivors.length)
